@@ -1,6 +1,6 @@
 # GameShop
 An online platform for buying and selling games. <br />
-Developed using ASP.NET MVC and Razor for views
+Developed using ASP.NET MVC and Razor for views<br />
 A gameshop which offers the following features:<br />
 - registration,login
 - hashed password storage
