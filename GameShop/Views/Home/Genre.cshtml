@@ -1,0 +1,100 @@
+﻿@model IEnumerable<GameShop.Models.Game>
+
+@{
+    ViewBag.Title = "Shop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Shop</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            <text>Company Name</text>
+        </th>
+        <th>
+            <text>Game</text>
+        </th>
+        <th>
+            <text>Genre</text>
+        </th>
+        <th>
+            <text>Shop Release Date</text>
+        </th>
+        <th>
+            <text>Game Release Date</text>
+        </th>
+        <th>
+            <text>Price</text>
+        </th>
+        <th>
+            <text>Discount</text>
+        </th>
+        <th>
+            <text>Age Restriction</text>
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @if (item.is_available)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company.name)
+                </td>
+
+                <td>
+                    <a href="/Home/GameDetails?id=@(item.id)">@item.name</a>
+
+                </td>
+                <td>
+                    <text>|</text>
+                    @foreach (var genre in item.Genres)
+                    {
+                        <a href="/Home/Genre/?name=@(genre.name)">@genre.name</a>
+                        <text>|</text>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.added_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.release_date)
+                </td>
+                <td>
+                    @if (item.Discount != null)
+                    {
+                        <strike>@Html.DisplayFor(modelItem => item.price)</strike>
+                        @((item.price - item.price * item.Discount.percentage_discount / 100).ToString())
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.price)
+                    }
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Discount.percentage_discount)
+                    @if (item.Discount != null)
+                    { <text>%</text>}
+                </td>
+
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.age_restriction)
+                </td>
+
+                <td>
+                    <a href="/Order/?name=@(item.id)">Buy</a>
+
+                </td>
+
+
+            }
+        </tr>
+    }
+
+</table>

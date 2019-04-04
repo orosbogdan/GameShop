@@ -1,0 +1,52 @@
+﻿@model GameShop.Models.Game
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div>
+    <h4>Order Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Company Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.name)
+        </dd>
+
+      
+        <dt>
+            Game
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            Price
+        </dt>
+        @if(Model.Discount!=null)
+            {
+        <dd>
+            @(Model.price - Model.price*Model.Discount.percentage_discount/100)
+        </dd>
+        }
+        else
+        {
+            <dd>
+                @Html.DisplayFor(model => model.price)
+            </dd>
+        }
+
+        <dt></dt>
+
+        <dd><a href="/Home/Buy/?name=@(Model.id)" class="btn-danger">Submit Order</a></dd>
+    </dl>
+</div>
+

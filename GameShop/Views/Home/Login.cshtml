@@ -1,0 +1,19 @@
+﻿@model string
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+ 
+
+    <input name="username" type="text" style="margin-top:50px;"  placeholder="Username"/>
+    <input name="password"type="password" style="margin-top:50px;" placeholder="Password" />
+    <input name="url" type="hidden" value="@(Model)" />
+    <button type="submit" class="btn-primary">Login</button>
+}
+
